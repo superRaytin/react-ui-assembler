@@ -19,16 +19,14 @@ const history = syncHistoryWithStore(hashHistory, store);
 store.subscribe(() => {
   // TODO: save data
   const currentValue = store.getState();
-  console.log('subscrite', currentValue);
+  // console.log('subscrite', currentValue);
 });
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <Route path="custom" component={App} />
-      </Route>
-      <Route path="/lab" component={Lab} />
+      <Route path="/" component={App} />
+      <Route path="/new" component={App} />
     </Router>
   </Provider>,
   document.getElementById('react-content')
