@@ -1,11 +1,14 @@
 import { createSelector } from 'reselect';
 
-const getxxxFilter = (state) => state.xxx;
+const getWidgetFilter = (state) => state.widget;
+const getLayoutFilter = (state) => state.layout;
 
-export const getxxx = createSelector(
-  getxxxFilter,
-  (xxx) => {
-    console.log('selector changed!');
-    return xxx;
-  }
+export const getWidget = createSelector(
+  getWidgetFilter,
+  (widgets) => widgets
+);
+
+export const getLayout = createSelector(
+  getLayoutFilter,
+  (layout) => layout
 );
