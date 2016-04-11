@@ -1,0 +1,23 @@
+
+@prefixClass: silo;
+
+@borderColor: #eee;
+
+.mac-flexbox-direction(@direction: row) {
+  flex-flow: @direction nowrap;
+  -webkit-flex-flow: @direction nowrap;
+  flex-direction: @direction;
+  -webkit-flex-direction: @direction;
+  -ms-flex-direction: @direction;
+}
+
+.mac-flexbox(@direction: row) {
+  .mac-flexbox-direction(@direction);
+  display: -webkit-flex;
+  display: flex;
+}
+
+.mac-flexbox-item(@p1: 1) {
+  -webkit-flex: @p1;
+  flex: @p1;
+}
