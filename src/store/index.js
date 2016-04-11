@@ -12,5 +12,12 @@ export default function configureStore(initialState) {
 
   const store = createStore(reducers, initialState, enhancer);
 
+  if (module.hot) {
+    module.hot.accept('../reducers', () => {
+      const nextReducer = require('../reducers');
+      store.replaceReducer(nextReducer);
+    });
+  }
+
   return store;
 }
