@@ -1,32 +1,48 @@
 import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../actions/index';
-import { getxxx } from '../selectors/index';
+import {
+  Col,
+  Row
+} from 'antd';
+
+import * as _actions from '../actions/index';
+import * as selectors from '../selectors/index';
+
+import Header from './Header';
+import Footer from './Footer';
+import Toolbar from './Toolbar';
+import WidgetGroups from './WidgetGroups';
+import Board from './Board';
+
 import './App.less';
+import './middleware/antd';
 
 class App extends Component {
-  handleSetCount() {
-    this.props.actions.setCounter(33);
-  }
-
   render() {
-    console.log('render');
+    const {actions, widget, layout} = this.props;
+
     return (
-      <div>
-        <div key="a1">loading: {this.props.xxx.fetching ? 'true' : 'false'}</div>
-        <div key="aaa11">
-          app {this.props.xxx.hhh}
-          <span onClick={() => { this.props.actions.xxx('jjjj'); }}>change</span>
-        </div>
-        <div key="a2">
-          counter: {this.props.xxx.counter}
-          <span onClick={() => { this.handleSetCount(); }}>plus</span>
-        </div>
-        <div key="a3">
-          uu: {this.props.yyy.uu}
-          <span onClick={() => { this.props.actions.setuu('loo'); }}> change</span>
-        </div>
+      <div id="wrapper" className="silo">
+        <section className="silo-sidebar">
+          <Header />
+          <WidgetGroups actions={actions}
+                        layout={layout}
+                        widget={widget} />
+        </section>
+        <section className="silo-container">
+          <div className="silo-board">
+            <section className="silo-toolbar">
+              <Toolbar actions={actions}
+                       layout={layout} />
+            </section>
+            <div className="silo-board-content">
+              <Board actions={actions}
+                     layout={layout} />
+            </div>
+            <Footer />
+          </div>
+        </section>
       </div>
     );
   }
@@ -34,25 +50,25 @@ class App extends Component {
 
 App.propTypes = {
   actions: PropTypes.object,
-  xxx: PropTypes.object,
-  yyy: PropTypes.object
+  widget: PropTypes.object,
+  layout: PropTypes.object
 };
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps', state);
+  // console.log('mapStateToProps', state);
   return {
-    xxx: getxxx(state),
-    yyy: state.yyy
+    widget: selectors.getWidget(state),
+    layout: selectors.getLayout(state)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch)
+    actions: bindActionCreators(_actions, dispatch)
   };
 }
 
-// save original stuff for testing
+// export original stuff for testing
 export const app = App;
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
