@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import xxx from './xxx';
-import yyy from './yyy';
+
+import widget from './widget';
+import layout from './layout';
 
 export default combineReducers({
-  xxx,
-  yyy,
+  widget,
+  layout,
   routing
 });
