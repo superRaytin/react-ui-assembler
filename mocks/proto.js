@@ -1,5 +1,7 @@
 // 原型稿
 
+const someWidgets = require('./someWidgets');
+
 module.exports = {
   // ===== 原型稿列表 =====
   'GET /proto/list.json': function (req, res) {
@@ -61,13 +63,43 @@ module.exports = {
         //subscribers: 'a, b',
         //tags: 'x, y',
         //ownerId: '76483',
-        state: [],
         creatorId: '76483',
         createTime: '2016-03-30 10:12:11',
         modifyTime: '2016-03-30 18:22:43',
 
         // 原型稿 ID，创建后系统生成，便于外链查看
         id: '1234',
+      }
+    ));
+  },
+
+  // ===== 原型稿 state 信息 =====
+  'GET /proto/state.json': function (req, res) {
+    res.json(createSuccessData(
+      {
+        layouts: [
+          {i: 'a', x: 0, y: 0, w: 2, h: 1},
+          {i: 'b', x: 2, y: 0, w: 2, h: 2},
+          {i: 'c', x: 4, y: 0, w: 2, h: 3},
+          {i: 'd', x: 6, y: 0, w: 2, h: 2},
+          {i: 'e', x: 8, y: 0, w: 2, h: 2},
+          {i: 'f', x: 10, y: 0, w: 2, h: 2},
+          {i: 'g', x: 0, y: 2, w: 2, h: 2}
+        ],
+        gridToWidgetMap: {
+          b: {
+            source: someWidgets.code4,
+            mounted: false,
+            style: '',
+            id: '564'
+          },
+          c: {
+            source: someWidgets.code3,
+            mounted: false,
+            style: someWidgets.style1,
+            id: '34'
+          }
+        }
       }
     ));
   },
