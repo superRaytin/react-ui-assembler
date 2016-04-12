@@ -6,10 +6,12 @@ import '../common/lib';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import App from '../components/App';
+import Workspace from '../components/workspace/Index';
+import View from '../components/view/Index';
 import Lab from '../components/Lab';
+import NoMatch from '../components/NoMatch';
 import configureStore from '../store/index';
 
 const initialState = {};
@@ -25,8 +27,12 @@ store.subscribe(() => {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App} />
-      <Route path="/new" component={App} />
+      <Route path="/">
+        <IndexRoute component={Lab} />
+        <Route path="workspace" component={Workspace} />
+        <Route path="view/:protoId" component={View} />
+        <Route path="*" component={NoMatch} />
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('react-content')
