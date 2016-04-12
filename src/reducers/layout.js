@@ -21,6 +21,7 @@ const initialState = {
     * */
   },
   activeGridKey: null,
+  enableRemove: false,
   fetching: false
 };
 
@@ -67,6 +68,14 @@ export default handleActions({
     return u({
       layouts: addGrid
     }, state);
+  },
+
+  'grid/enable-remove' (state, action) {
+    return {...state, enableRemove: true};
+  },
+
+  'grid/disable-remove' (state, action) {
+    return {...state, enableRemove: false};
   },
 
   'layout/request/start' (state, action) {
