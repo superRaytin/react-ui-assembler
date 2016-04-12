@@ -1,6 +1,6 @@
 
-@import "../styles/variables.less";
-@import "../styles/common.less";
+@import "../../styles/variables.less";
+@import "../../styles/common.less";
 
 #wrapper, #react-content {
   height: 100%;
@@ -10,12 +10,32 @@
   .mac-flexbox(row);
   height: 100%;
   &-header {
-    padding: 20px 10px;
-    margin-bottom: 20px;
-    border-radius: 2px;
-    background: #26C6DA;
+    background: #444;
     color: #fff;
     text-align: center;
+    &-logo {
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
+    &-nav {
+      li {
+        padding: 8px 12px;
+        font-size: 16px;
+        cursor: pointer;
+        span {
+          display: block;
+          padding: 3px 0;
+          font-size: 12px;
+        }
+        &:hover {
+          background: #333;
+        }
+        &.active {
+          border-left: 2px solid #01BAD2;
+          background: #222;
+        }
+      }
+    }
   }
   &-search {
     margin-bottom: 20px;
@@ -39,6 +59,10 @@
 .@{prefixClass}-toolbar {
   .mac-flexbox(row);
   margin: 10px 10px 0 10px;
+  &-wrapper {
+    .mac-flexbox(row);
+    .mac-flexbox-item(1);
+  }
   &-group {
     .mac-flexbox(row);
     .mac-flexbox-item(1);
@@ -60,7 +84,6 @@
 
 /* Sidebar */
 .@{prefixClass}-sidebar {
-
   width: 200px;
   position: relative;
   padding: 10px;
@@ -123,7 +146,7 @@
 .react-grid-item {
   transition: all 200ms ease;
   transition-property: left, top;
-  padding: 2px;
+  padding: 5px;
   background: #fff;
   border: 0px solid #ddd;
   &-plus {
@@ -152,7 +175,7 @@
     z-index: 3;
   }
   &.react-grid-placeholder {
-    background: #00ACC2;
+    background: #2DB7F5;
     opacity: 0.2;
     transition-duration: 100ms;
     z-index: 2;
@@ -184,9 +207,12 @@
     background: #fff;
     opacity: .6;
   }
+  &:not(.react-grid-placeholder):hover {
+    border-color: #999;
+  }
   &.active {
     border-style: solid;
-    border-color: #00ACC2;
+    border-color: #2DB7F5 !important;
   }
   .minMax {
     font-size: 12px;
@@ -200,3 +226,39 @@
   transition: height 200ms ease;
   background: #f2f2f2;
 }
+
+.@{prefixClass}.view-block {
+  .@{prefixClass}-board-content {
+    margin: 0;
+  }
+  .react-grid-item {
+    border-width: 0;
+  }
+}
+
+.@{prefixClass}.view {
+  .@{prefixClass}-board-content {
+    margin: 0;
+    background: #fff;
+  }
+  .layout {
+    background: #fff;
+  }
+  .react-grid-item {
+    padding: 0;
+    border-width: 0;
+  }
+}
+
+.grid-widget-btn-remove {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  font-size: 14px;
+  color: #FA727D;
+  cursor: pointer;
+  &:hover{
+    color: #E01515;
+  }
+}
+

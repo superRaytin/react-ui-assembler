@@ -6,17 +6,17 @@ import {
   Row
 } from 'antd';
 
-import * as _actions from '../actions/index';
-import * as selectors from '../selectors/index';
+import * as _actions from '../../actions/index';
+import * as selectors from '../../selectors/index';
 
-import Header from './Header';
-import Footer from './Footer';
+import Header from './../Header';
+import Footer from './../Footer';
 import Toolbar from './Toolbar';
 import WidgetGroups from './WidgetGroups';
 import Board from './Board';
 
-import './App.less';
-import './middleware/antd';
+import './Index.less';
+import '../middleware/antd';
 
 class App extends Component {
   render() {
@@ -24,8 +24,8 @@ class App extends Component {
 
     return (
       <div id="wrapper" className="silo">
+        <Header />
         <section className="silo-sidebar">
-          <Header />
           <WidgetGroups actions={actions}
                         layout={layout}
                         widget={widget} />
