@@ -13,3 +13,12 @@ export const changeGridMountStatus = createAction('layout/change-grid-mount-stat
 
 // grid
 export const addGrid = createAction('grid/add');
+export const enableGridRemove = createAction('grid/enable-remove');
+export const disableGridRemove = createAction('grid/disable-remove');
+
+// proto
+export const fetchProtoData = createAction('proto/sync');
+export const fetchProtoDetail = createAction('proto/sync/detail');
+export const fetchProtoState = createAction('proto/sync/state');
+export const fetchWidgetMap = createAction('proto/sync/widget-map');
+export const protoChangeGridMountStatus = createAction('proto/change-grid-mount-status');
