@@ -2,23 +2,17 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
-  Button,
-  Col,
-  Icon,
-  Row
+  Icon
 } from 'antd';
 
 import * as _actions from '../../actions/index';
 import * as selectors from '../../selectors/index';
 
 import Footer from './../Footer';
-import Toolbar from './../workspace/Toolbar';
 import Board from './Board';
 
 import './../workspace/Index.less';
-import '../middleware/antd';
-
-const ButtonGroup = Button.Group;
+import '../../middleware/antd';
 
 class Proto extends Component {
   render() {
@@ -28,17 +22,6 @@ class Proto extends Component {
       <div id="wrapper" className="silo view-block">
         <section className="silo-container">
           <div className="silo-board">
-            <section className="silo-toolbar" style={{display: 'none'}}>
-              <div className="silo-toolbar-wrapper">
-                <div className="silo-toolbar-group">
-                  <ButtonGroup>
-                    <Button type="primary">
-                      <Icon type="edit" /><span>编辑</span>
-                    </Button>
-                  </ButtonGroup>
-                </div>
-              </div>
-            </section>
             <div className="silo-board-content">
               <Board actions={actions}
                      proto={proto} />
