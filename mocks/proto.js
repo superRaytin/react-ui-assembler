@@ -66,7 +66,7 @@ module.exports = {
   },
 
   // ===== 原型稿详细信息 =====
-  'GET /proto/detail.json': function (req, res) {
+  'POST /proto/detail.json': function (req, res) {
     res.json(createSuccessData(
       {
         name: 'hello world',
@@ -88,7 +88,7 @@ module.exports = {
   },
 
   // ===== 原型稿 state 信息 =====
-  'GET /proto/state.json': function (req, res) {
+  'POST /proto/state.json': function (req, res) {
     res.json(createSuccessData(
       {
         layouts: [
