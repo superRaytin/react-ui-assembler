@@ -20,23 +20,11 @@ const initialState = {
       }
     * */
   },
-  activeGridKey: null,
-  enableRemove: false,
+  detail: {},
   fetching: false
 };
 
 export default handleActions({
-  'layout/sync/all' (state, action) {
-    // return {...state, layouts: action.payload};
-    return u({
-      layouts: action.payload
-    }, state);
-  },
-
-  'layout/change-active-grid' (state, action) {
-    return {...state, activeGridKey: action.payload};
-  },
-
   'layout/change-grid-mount-status' (state, action) {
     return u({
       gridToWidgetMap: {
@@ -68,6 +56,13 @@ export default handleActions({
     }, state);
   },
 
+  'grid/sync/layouts' (state, action) {
+    // return {...state, layouts: action.payload};
+    return u({
+      layouts: action.payload
+    }, state);
+  },
+
   'grid/add' (state, action) {
     function addGrid(layouts) {
       return [...layouts, action.payload];
@@ -78,12 +73,16 @@ export default handleActions({
     }, state);
   },
 
-  'grid/enable-remove' (state, action) {
-    return {...state, enableRemove: true};
+  'workspace/sync/detail' (state, action) {
+    return {...state, detail: action.payload};
   },
 
-  'grid/disable-remove' (state, action) {
-    return {...state, enableRemove: false};
+  'workspace/sync/state' (state, action) {
+    return {
+      ...state,
+      layouts: action.payload.layouts,
+      gridToWidgetMap: action.payload.gridToWidgetMap
+    };
   },
 
   'layout/request/start' (state, action) {

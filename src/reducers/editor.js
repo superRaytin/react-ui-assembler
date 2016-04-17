@@ -4,7 +4,6 @@ import u from 'updeep-mutable';
 const initialState = {
   value: '',
   widgetData: {},
-  showWidgetEditModal: false
 };
 
 export default handleActions({
@@ -24,10 +23,6 @@ export default handleActions({
     return u({
       value: action.payload
     }, state);
-  },
-
-  'editor/toggle-widget-edit-modal' (state, action) {
-    return {...state, showWidgetEditModal: action.payload};
   },
 
   'editor/reset' (state, action) {
