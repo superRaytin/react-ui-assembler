@@ -12,8 +12,22 @@ module.exports = {
           // 原型稿标题
           name: 'hello',
           // 原型稿 ID
-          id: '1234'
-        }
+          id: '1',
+          description: 'test proto',
+          createTime: '2016-03-30 10:12:11',
+        },
+        {
+          name: 'hello2',
+          id: '2',
+          description: 'test proto2',
+          createTime: '2016-03-30 10:12:12',
+        },
+        {
+          name: 'hello3',
+          id: '3',
+          description: 'test proto3',
+          createTime: '2016-03-30 10:12:12',
+        },
       ],
       1000
     );

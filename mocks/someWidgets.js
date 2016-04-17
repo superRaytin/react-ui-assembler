@@ -6,7 +6,7 @@ const code1 = 'import { Modal, Button } from "antd";' +
   'render() {' +
   'return (' +
   '<div>' +
-  '<Button type="primary" onClick={this.showModal}>显示对话框1</Button>' +
+  '<Button type="primary" onClick={this.showModal}>显示对话框</Button>' +
   '<Modal title="第一个 Modal" visible={this.state.visible} ' +
   'onOk={this.hideModal} onCancel={this.hideModal}>' +
   '<p>对话框的内容</p>' +
@@ -34,10 +34,10 @@ const code2 = 'import { Modal, Button } from "antd";' +
   '});' +
   'ReactDOM.render(<App />, mountNode);';
 
-const code3 = "import React from 'react';" +
-  "import { Slider, Icon } from 'antd';" +
-  "" +
-  "const SliderUnlock = React.createClass({" +
+const code3 = "import React from 'react';\n" +
+  "import { Slider, Icon } from 'antd';\n" +
+  "\n" +
+  "const SliderUnlock = React.createClass({\n" +
   "  propTypes: {" +
   "    max: React.PropTypes.number," +
   "    min: React.PropTypes.number," +
@@ -119,12 +119,47 @@ const code3 = "import React from 'react';" +
   "" +
   'ReactDOM.render(<div><SliderUnlock /></div>, mountNode);';
 
-const code4 = 'import { Switch, Icon } from "antd";' +
+const code41 = 'import { Switch, Icon } from "antd";' +
   'ReactDOM.render(<div>' +
   '<Switch checkedChildren="开" unCheckedChildren="关" />' +
   '<span> </span>' +
   '<Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />} />' +
   '</div>, mountNode);';
+
+const code4 = "import { Switch, Icon } from 'antd';\n" +
+  "\n" +
+  "ReactDOM.render(<div>\n" +
+  "  <Switch checkedChildren='开' unCheckedChildren='关' />\n" +
+  "  <span> </span>\n" +
+  "  <Switch checkedChildren={<Icon type='check' />} unCheckedChildren={<Icon type='cross' />} />\n" +
+  "</div>, mountNode);\n";
+
+const code5 = "import { Tag } from 'antd';" +
+  "" +
+  "ReactDOM.render(<div>" +
+  "  <Tag closable color='blue'>蓝色</Tag>" +
+  "  <Tag closable color='green'>绿色</Tag>" +
+  "  <Tag closable color='yellow'>黄色</Tag>" +
+  "  <Tag closable color='red'>红色</Tag>" +
+  "</div>, mountNode);";
+
+const code6 = "import { Radio } from 'antd';" +
+  "" +
+  "ReactDOM.render(<Radio>Radio</Radio>" +
+  ", mountNode);";
+
+const code7 = "import { TimePicker } from 'antd';" +
+  "" +
+  "function onChange(time) {" +
+  "  console.log(time);" +
+  "  if (time) {" +
+  "    console.log(time.toLocaleTimeString('zh-CN', { hour12: false })); /* Get time string */" +
+  "  }" +
+  "}" +
+  "" +
+  "ReactDOM.render(" +
+  "  <TimePicker onChange={onChange} />" +
+  ", mountNode);";
 
 const style1 = '.slide-unlock {  position: relative;  padding: 0 30px;}.slide-unlock .anticon {  position: absolute;  top: -3px;  width: 16px;  height: 16px;  line-height: 1;  font-size: 16px;  color: #ccc;}.slide-unlock .anticon.anticon-highlight {  color: #666;}.slide-unlock .anticon-lock {  left: 0;}.slide-unlock .anticon-unlock {  right: 0;}';
 
@@ -134,4 +169,7 @@ module.exports = {
   code2: code2,
   code3: code3,
   code4: code4,
+  code5: code5,
+  code6: code6,
+  code7: code7,
 };

@@ -51,16 +51,22 @@ module.exports = {
               source: someWidgets.code1,
             },
             {
-              name: 'Widget2',
+              name: 'Radio',
               id: '56',
-              description: 'just a test widget2',
-              source: someWidgets.code2,
+              description: '单选框',
+              source: someWidgets.code6,
             },
             {
-              name: 'Widget3',
+              name: 'Tag',
               id: '12344',
-              description: 'just3',
-              source: someWidgets.code1,
+              description: '标签',
+              source: someWidgets.code5,
+            },
+            {
+              name: 'TimePicker',
+              id: '12344',
+              description: '时间选择框',
+              source: someWidgets.code7,
             },
             {
               name: 'Switch',
@@ -99,16 +105,16 @@ module.exports = {
         description: 'just a test widget',
         // 是否公开，默认公开
         private: false,
-        // 所属群组
-        group: 'Ant Design',
+        // 所属群组，群组 ID
+        group: '12',
         // 合作者，控件可多人编辑
         //collaborators: 'a, b',
         // 标签，用于快速分类
         //tags: 'x, y',
-        // 原型稿 owner 可转让，默认即为创建者
+        // 控件 owner 可转让，默认即为创建者
         //ownerId: '76483',
-        // 数据，用于还原控件
-        state: [],
+        // 控件代码
+        source: '',
         // 创建人
         creatorId: '76483',
         // 创建时间
@@ -120,7 +126,7 @@ module.exports = {
   },
 
   // ===== 控件详细信息 =====
-  'GET /widget/detail.json': function (req, res) {
+  'POST /widget/detail.json': function (req, res) {
     res.json(createSuccessData(
       {
         name: 'hello world',
@@ -130,7 +136,7 @@ module.exports = {
         //collaborators: 'a, b',
         //tags: 'x, y',
         //ownerId: '76483',
-        state: [],
+        source: someWidgets.code4,
         creatorId: '76483',
         createTime: '2016-03-30 10:12:11',
         modifyTime: '2016-03-30 18:22:43',
@@ -139,6 +145,60 @@ module.exports = {
         id: '1234',
       }
     ));
+  },
+
+  // ===== 获取控件代码 =====
+  'GET /widget/source.json': function (req, res) {
+    res.json(createSuccessData(
+      {
+        source: someWidgets.code4,
+      }
+    ));
+  },
+
+  // ===== 保存控件 =====
+  'POST /widget/save.json': function (req, res) {
+    delay(res, null, 1000);
+    //res.json(createFailData());
+  },
+
+  // ===== 获取开发者的组件列表 =====
+  'GET /developer/widget/list.json': function (req, res) {
+    delay(
+      res,
+      [
+        {
+          name: 'Modal',
+          id: '1',
+          description: '对话框',
+          createTime: '2016-03-30 10:12:11',
+          source: someWidgets.code1,
+        },
+        {
+          name: 'Tag',
+          id: '2',
+          description: '标签',
+          createTime: '2016-03-30 10:12:11',
+          source: someWidgets.code5,
+        },
+        {
+          name: 'slider-unlock',
+          id: '3',
+          description: '滑动解锁',
+          createTime: '2016-03-30 10:12:11',
+          source: someWidgets.code3,
+          style: someWidgets.style1
+        },
+        {
+          name: 'Switch',
+          id: '4',
+          description: '开关',
+          createTime: '2016-03-30 10:12:11',
+          source: someWidgets.code4,
+        }
+      ],
+      500
+    );
   },
 
   // ===== 修改控件 =====
