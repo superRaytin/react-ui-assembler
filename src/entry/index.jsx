@@ -10,6 +10,9 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import Workspace from '../components/workspace/Index';
 import View from '../components/view/Index';
+import Personal from '../components/personal/Index';
+import Developer from '../components/developer/Index';
+import Editor from '../components/editor/Index';
 import Lab from '../components/Lab';
 import NoMatch from '../components/NoMatch';
 import configureStore from '../store/index';
@@ -31,6 +34,9 @@ ReactDOM.render(
         <IndexRoute component={Lab} />
         <Route path="workspace" component={Workspace} />
         <Route path="view/:protoId" component={View} />
+        <Route path="personal" component={Personal} />
+        <Route path="developer" component={Developer} />
+        <Route path="editor" component={Editor} />
         <Route path="*" component={NoMatch} />
       </Route>
     </Router>
