@@ -43,7 +43,7 @@ class Toolbar extends Component {
               <Icon type="plus" /><span>新增网格</span>
             </Button>
             <Button type="ghost" onClick={this.handleRemoveGrid.bind(this)}>
-              <Icon type="delete" /><span>删除</span>
+              <Icon type="delete" /><span>{this.props.layout.enableRemove ? '取消删除' : '删除'}</span>
             </Button>
           </ButtonGroup>
         </div>
@@ -53,7 +53,7 @@ class Toolbar extends Component {
               <Icon type="save" /><span>保存</span>
             </Button>
             <Button type="ghost">
-              <Icon type="check" /><span>发布</span>
+              <Icon type="cloud-upload-o" /><span>发布</span>
             </Button>
           </ButtonGroup>
         </div>

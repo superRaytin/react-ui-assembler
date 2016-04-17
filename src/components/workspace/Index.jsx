@@ -16,7 +16,7 @@ import WidgetGroups from './WidgetGroups';
 import Board from './Board';
 
 import './Index.less';
-import '../middleware/antd';
+import '../../middleware/antd';
 
 class App extends Component {
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
 
     return (
       <div id="wrapper" className="silo">
-        <Header />
+        <Header {...this.props} />
         <section className="silo-sidebar">
           <WidgetGroups actions={actions}
                         layout={layout}
@@ -40,8 +40,8 @@ class App extends Component {
               <Board actions={actions}
                      layout={layout} />
             </div>
-            <Footer />
           </div>
+          <Footer />
         </section>
       </div>
     );

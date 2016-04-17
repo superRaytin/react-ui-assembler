@@ -14,14 +14,21 @@
     color: #fff;
     text-align: center;
     &-logo {
-      padding: 20px 0;
-      margin-bottom: 20px;
+      padding: 21px 16px;
+      background: #01BAD2;
+      .anticon {
+        font-size: 26px;
+      }
     }
     &-nav {
       li {
-        padding: 8px 12px;
         font-size: 16px;
         cursor: pointer;
+        a {
+          display: block;
+          padding: 8px 12px;
+          color: #fff;
+        }
         span {
           display: block;
           padding: 3px 0;
@@ -31,7 +38,6 @@
           background: #333;
         }
         &.active {
-          border-left: 2px solid #01BAD2;
           background: #222;
         }
       }
@@ -55,10 +61,32 @@
   }
 }
 
+/* Content */
+.@{prefixClass}-content {
+  .mac-flexbox-item(1);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 3px;
+  overflow: scroll;
+  background: #fff;
+  .breadcrumb {
+    margin-bottom: 20px;
+  }
+  .searchbox {
+    margin-bottom: 15px;
+  }
+  &.p0 {
+    padding: 0;
+  }
+}
+
 /* Toolbar */
 .@{prefixClass}-toolbar {
   .mac-flexbox(row);
   margin: 10px 10px 0 10px;
+  &.m20 {
+    margin: 20px 20px 0 20px;
+  }
   &-wrapper {
     .mac-flexbox(row);
     .mac-flexbox-item(1);
@@ -252,8 +280,8 @@
 
 .grid-widget-btn-remove {
   position: absolute;
-  right: 5px;
-  top: 2px;
+  right: 2px;
+  top: -1px;
   font-size: 14px;
   color: #FA727D;
   cursor: pointer;

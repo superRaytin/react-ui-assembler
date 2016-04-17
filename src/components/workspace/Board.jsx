@@ -38,16 +38,15 @@ const Board = React.createClass({
   },
 
   componentDidMount() {
-    console.log('did mount');
+    // 每次安装后，先重置其中组件的绑定状态
+    // 由于生成的组件 DOM 是临时态，所主切换路由再回来需要重新生成
+    this.props.actions.resetGridMountStatus();
+
+    // 生成组件 DOM
     this.generateSourceToWidget();
   },
 
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
-  },
-
   componentDidUpdate() {
-    console.log('did updated');
     this.generateSourceToWidget();
   },
 
@@ -58,7 +57,6 @@ const Board = React.createClass({
   },
 
   onLayoutChange(layout, layouts) {
-    console.log('layout change!');
     if (this.props.onLayoutChange) {
       this.props.onLayoutChange(layout, layouts);
     }
@@ -79,7 +77,6 @@ const Board = React.createClass({
   },
 
   generateSourceToWidget() {
-    console.log('generateSourceToWidget');
     const { actions } = this.props;
 
     _.each(this.props.layout.gridToWidgetMap, (v, key) => {
@@ -94,7 +91,6 @@ const Board = React.createClass({
   },
 
   generateGridItemDOM() {
-    console.log('generateGridItemDOM');
     const self = this;
     const activeGridKey = this.props.layout.activeGridKey;
     const isEnableRemove = this.props.layout.enableRemove;
