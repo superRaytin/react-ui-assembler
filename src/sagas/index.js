@@ -61,13 +61,16 @@ function* fetchWidgets(getState) {
   });
 }
 
-// 获取页面所有数据
-function* fetchProtoDetail() {
+// 获取原型详细数据
+function* fetchProtoDetail(action) {
   yield put({
     type: 'proto/request/start'
   });
 
-  const detailData = yield call(fetchData, '/proto/detail.json');
+  const protoId = action.payload;
+  const detailData = yield call(postData, '/proto/detail.json', {
+    id: protoId
+  });
 
   yield put({
     type: 'proto/sync/detail',
@@ -79,13 +82,16 @@ function* fetchProtoDetail() {
   });
 }
 
-// 获取页面 state 数据
-function* fetchProtoState() {
+// 获取原型 state 数据
+function* fetchProtoState(action) {
   yield put({
     type: 'proto/request/start'
   });
 
-  const stateData = yield call(fetchData, '/proto/state.json');
+  const protoId = action.payload;
+  const stateData = yield call(postData, '/proto/state.json', {
+    id: protoId
+  });
 
   // 原型稿在查看页面浏览，不可编辑
   const filteredState = u({
@@ -106,9 +112,9 @@ function* fetchProtoState() {
   });
 }
 
-function* fetchProtoData() {
-  yield fork(fetchProtoDetail);
-  yield fork(fetchProtoState);
+function* fetchProtoData(action) {
+  yield fork(fetchProtoDetail, action);
+  yield fork(fetchProtoState, action);
 }
 
 // 获取我的原型稿列表
@@ -176,7 +182,7 @@ function* editorFetchWidgetSource(action) {
   });
 }
 
-// 编辑器获取组件代码
+// 编辑器保存组件
 function* editorSaveWidget(getState, action) {
   const payload = action.payload;
   const data = u({
@@ -184,6 +190,78 @@ function* editorSaveWidget(getState, action) {
   }, getState().editor.widgetData);
 
   const result = yield call(postData, '/widget/save.json', {
+    ...data
+  });
+
+  if (result.success) {
+    message.success('保存成功。');
+  } else {
+    message.error('系统出错，请重试。');
+  }
+}
+
+// 获取原型详细数据（workspace）
+function* workspaceFetchProtoDetail(action) {
+  const protoId = action.payload;
+  const detailData = yield call(postData, '/proto/detail.json', {
+    id: protoId
+  });
+
+  yield put({
+    type: 'workspace/sync/detail',
+    payload: detailData.data,
+  });
+}
+
+// 获取原型 state 数据（workspace）
+function* workspaceFetchProtoState(action) {
+  const protoId = action.payload;
+  const stateData = yield call(postData, '/proto/state.json', {
+    id: protoId
+  });
+
+  yield put({
+    type: 'workspace/sync/state',
+    payload: stateData.data,
+  });
+}
+
+// 同步原型稿数据
+function* workspaceFetchProtoData(action) {
+  yield fork(workspaceFetchProtoDetail, action);
+  yield fork(workspaceFetchProtoState, action);
+}
+
+// 创建原型稿
+function* workspaceCreateProto(getState, action) {
+  const payload = action.payload.data;
+
+  // TODO: 补全默认数据
+  const data = {...payload};
+
+  const result = yield call(postData, '/proto/create.json', {
+    ...data
+  });
+
+  if (result.success) {
+    message.success('创建成功。');
+  } else {
+    message.error('系统出错，请重试。');
+  }
+}
+
+// 修改原型稿
+function* workspaceModifyProto(getState, action) {
+  const payload = action.payload;
+  /*
+  const data = u({
+    ...payload
+  }, getState().layout.detail);
+   */
+  const data = payload.data;
+  const protoId = payload.protoId;
+
+  const result = yield call(postData, `/proto/modify.json?id=${protoId}`, {
     ...data
   });
 
@@ -226,6 +304,22 @@ function* watchEditorSaveWidget(getState) {
   yield* takeEvery('editor/widget/save/trigger', editorSaveWidget, getState);
 }
 
+function* watchWorkspaceFetchProtoData() {
+  yield* takeEvery('workspace/sync/proto/trigger', workspaceFetchProtoData);
+}
+
+function* watchWorkspaceCreateProto(getState) {
+  yield* takeEvery('workspace/create/proto/trigger', workspaceCreateProto, getState);
+}
+
+function* watchWorkspaceModifyProto(getState) {
+  yield* takeEvery('workspace/modify/proto/trigger', workspaceModifyProto, getState);
+}
+
+function* watchWorkspaceFetchProtoDetail(getState) {
+  yield* takeEvery('workspace/sync/detail/trigger', workspaceFetchProtoDetail);
+}
+
 export default function* root(getState) {
   yield fork(watchFetchWidgets, getState);
   yield fork(watchFetchProtoData, getState);
@@ -235,4 +329,9 @@ export default function* root(getState) {
   yield fork(watchEditorFetchWidgetData, getState);
   yield fork(watchEditorWidgetSource, getState);
   yield fork(watchEditorSaveWidget, getState);
+
+  yield fork(watchWorkspaceFetchProtoData, getState);
+  yield fork(watchWorkspaceCreateProto, getState);
+  yield fork(watchWorkspaceModifyProto, getState);
+  yield fork(watchWorkspaceFetchProtoDetail, getState);
 }
