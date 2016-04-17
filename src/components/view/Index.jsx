@@ -16,15 +16,12 @@ import '../../middleware/antd';
 
 class Proto extends Component {
   render() {
-    const {actions, proto} = this.props;
-
     return (
       <div id="wrapper" className="silo view-block">
         <section className="silo-container">
           <div className="silo-board">
             <div className="silo-board-content">
-              <Board actions={actions}
-                     proto={proto} />
+              <Board {...this.props} />
             </div>
             <Footer />
           </div>

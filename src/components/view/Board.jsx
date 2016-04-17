@@ -12,7 +12,8 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 const Board = React.createClass({
   propTypes: {
     actions: PropTypes.object,
-    proto: PropTypes.object
+    proto: PropTypes.object,
+    params: PropTypes.object,
   },
 
   mixins: [PureRenderMixin],
@@ -32,7 +33,9 @@ const Board = React.createClass({
   },
 
   componentWillMount() {
-    this.props.actions.fetchProtoData();
+    if (this.props.params.protoId) {
+      this.props.actions.viewFetchProtoData(this.props.params.protoId);
+    }
   },
 
   componentDidMount() {

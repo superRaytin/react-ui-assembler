@@ -16,7 +16,7 @@ class WidgetGroups extends Component {
   }
 
   handleWidgetAdd(widget) {
-    const activeGridKey = this.props.layout.activeGridKey;
+    const activeGridKey = this.props.uistate.activeGridKey;
 
     if (activeGridKey === null) {
       message.warn('先从面板中选择要操作的网格。', 2);
@@ -79,7 +79,8 @@ class WidgetGroups extends Component {
 WidgetGroups.propTypes = {
   actions: PropTypes.object,
   widget: PropTypes.object,
-  layout: PropTypes.object
+  layout: PropTypes.object,
+  uistate: PropTypes.object,
 };
 
 export default WidgetGroups;

@@ -27,11 +27,15 @@ class Toolbar extends Component {
   }
 
   handleRemoveGrid() {
-    if (this.props.layout.enableRemove) {
-      this.props.actions.disableGridRemove();
+    if (this.props.uistate.enableGridRemove) {
+      this.props.actions.toggleGridRemove(false);
     } else {
-      this.props.actions.enableGridRemove();
+      this.props.actions.toggleGridRemove(true);
     }
+  }
+
+  handleShowSaveModal() {
+    this.props.actions.toggleProtoEditModal(true);
   }
 
   render() {
@@ -43,17 +47,15 @@ class Toolbar extends Component {
               <Icon type="plus" /><span>新增网格</span>
             </Button>
             <Button type="ghost" onClick={this.handleRemoveGrid.bind(this)}>
-              <Icon type="delete" /><span>{this.props.layout.enableRemove ? '取消删除' : '删除'}</span>
+              <Icon type="delete" />
+              <span>{this.props.uistate.enableGridRemove ? '取消删除' : '删除'}</span>
             </Button>
           </ButtonGroup>
         </div>
         <div>
           <ButtonGroup>
-            <Button type="primary">
+            <Button type="primary" onClick={this.handleShowSaveModal.bind(this)}>
               <Icon type="save" /><span>保存</span>
-            </Button>
-            <Button type="ghost">
-              <Icon type="cloud-upload-o" /><span>发布</span>
             </Button>
           </ButtonGroup>
         </div>
@@ -64,7 +66,8 @@ class Toolbar extends Component {
 
 Toolbar.propTypes = {
   actions: PropTypes.object,
-  layout: PropTypes.object
+  layout: PropTypes.object,
+  uistate: PropTypes.object,
 };
 
 export default Toolbar;

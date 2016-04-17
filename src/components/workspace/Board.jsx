@@ -15,6 +15,7 @@ const Board = React.createClass({
   propTypes: {
     actions: PropTypes.object,
     layout: PropTypes.object,
+    uistate: PropTypes.object,
     onLayoutChange: PropTypes.func
   },
 
@@ -62,18 +63,18 @@ const Board = React.createClass({
     }
 
     // 同步至顶层 store
-    this.props.actions.layoutSyncAll(layout);
+    this.props.actions.gridSyncLayouts(layout);
   },
 
   handleGridItemActive(key) {
-    const { actions, layout } = this.props;
+    const { actions, uistate } = this.props;
 
     // 跳过被固定的网格
-    if (key === layout.activeGridKey) {
+    if (key === uistate.activeGridKey) {
       return;
     }
 
-    actions.changeActiveGrid(key);
+    actions.changeActiveGridKey(key);
   },
 
   generateSourceToWidget() {
@@ -92,8 +93,8 @@ const Board = React.createClass({
 
   generateGridItemDOM() {
     const self = this;
-    const activeGridKey = this.props.layout.activeGridKey;
-    const isEnableRemove = this.props.layout.enableRemove;
+    const activeGridKey = this.props.uistate.activeGridKey;
+    const isEnableRemove = this.props.uistate.enableGridRemove;
 
     return _.map(this.props.layout.layouts, (l) => {
       const key = l.i;
