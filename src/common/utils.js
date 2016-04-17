@@ -10,7 +10,7 @@ export function transformSourceCode(code) {
       ]
     }).code;
   } catch (e) {
-    throw new Error('Invalid widget code');
+    throw new Error(`Invalid widget code, ${e}`);
   }
 }
 
@@ -22,7 +22,7 @@ export function applySourceCodeToDOM(sourceCode, id) {
     html += util.format('<script>(function(){%s})()</script>', renderedCode);
     jQuery(`#${id}`).after(html);
   } catch (e) {
-    throw new Error(`Apply source code error: ${e}`);
+    throw new Error(`Apply source code error, ${e}`);
   }
 }
 
