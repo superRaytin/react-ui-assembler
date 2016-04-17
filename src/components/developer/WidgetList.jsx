@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { push } from 'react-router-redux';
 import {
   Icon,
+  message,
   Table
 } from 'antd';
 
@@ -45,7 +46,7 @@ class WidgetList extends Component {
           <span>
             <a onClick={self.handleEdit.bind(self, record)}>编辑</a>
             <span className="ant-divider"></span>
-            <a href="#">删除</a>
+            <a onClick={self.handleRemove.bind(self, record)}>删除</a>
           </span>
         );
       }
@@ -53,7 +54,6 @@ class WidgetList extends Component {
   }
 
   handleEdit(widget) {
-    console.log('edit', widget);
     this.props.router.push({
       pathname: '/editor',
       query: {
@@ -63,6 +63,10 @@ class WidgetList extends Component {
         widget
       }
     });
+  }
+
+  handleRemove(widget) {
+    message.info('删除功能暂未开放。');
   }
 
   render() {
