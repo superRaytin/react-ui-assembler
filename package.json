@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "entry": {
-    "index": "./src/entry/index.jsx",
-    "demo": "./src/entry/demo.jsx"
+    "index": "./src/entry/index.jsx"
   },
   "dependencies": {
     "antd": "0.12.x",
