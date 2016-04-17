@@ -47,6 +47,14 @@ export default handleActions({
     }, state);
   },
 
+  'layout/reset-grid-mount-status' (state) {
+    return u({
+      gridToWidgetMap: u.map({
+        mounted: false
+      }, state.gridToWidgetMap)
+    }, state);
+  },
+
   'layout/create-widget-to-grid' (state, action) {
     return u({
       gridToWidgetMap: {
