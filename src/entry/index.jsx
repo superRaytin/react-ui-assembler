@@ -13,7 +13,6 @@ import View from '../components/view/Index';
 import Personal from '../components/personal/Index';
 import Developer from '../components/developer/Index';
 import Editor from '../components/editor/Index';
-import Lab from '../components/Lab';
 import NoMatch from '../components/NoMatch';
 import configureStore from '../store/index';
 
@@ -31,8 +30,10 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/">
-        <IndexRoute component={Lab} />
-        <Route path="workspace" component={Workspace} />
+        <IndexRoute component={Workspace} />
+        <Route path="workspace" component={Workspace}>
+          <Route path=":protoId" component={Workspace} />
+        </Route>
         <Route path="view/:protoId" component={View} />
         <Route path="personal" component={Personal} />
         <Route path="developer" component={Developer} />
