@@ -41,11 +41,10 @@ class WidgetEditModal extends Component {
   render() {
     const { getFieldProps } = this.props.form;
     const widgetData = this.props.editor.widgetData;
-    console.log(56, widgetData);
 
     return (
       <Modal title="保存"
-             visible={this.props.editor.showWidgetEditModal}
+             visible
              onOk={this.handleOk.bind(this)}
              onCancel={this.handleCancel.bind(this)}>
         <div>

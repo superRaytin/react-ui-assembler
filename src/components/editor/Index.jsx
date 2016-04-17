@@ -22,11 +22,11 @@ class Editor extends Component {
   }
 
   componentWillMount() {
-    console.log('editor will mount!', this.props);
+    // console.log('editor will mount!', this.props);
   }
 
   componentDidMount() {
-    console.log('editor dit mount!');
+    // console.log('editor dit mount!');
   }
 
   handleSave(values) {
@@ -45,7 +45,7 @@ class Editor extends Component {
             <div className="silo-content p0">
               <AceEditor {...this.props} />
               {
-                this.props.editor.showWidgetEditModal ?
+                this.props.uistate.showWidgetEditModal ?
                   <WidgetEditModal {...this.props} handleOk={this.handleSave.bind(this)} /> : null
               }
             </div>
@@ -61,6 +61,7 @@ Editor.propTypes = {
   actions: PropTypes.object,
   location: PropTypes.object,
   editor: PropTypes.object,
+  uistate: PropTypes.object,
 };
 
 Editor.contextTypes = {
@@ -69,7 +70,8 @@ Editor.contextTypes = {
 
 function mapStateToProps(state) {
   return {
-    editor: state.editor
+    editor: state.editor,
+    uistate: state.uistate,
   };
 }
 

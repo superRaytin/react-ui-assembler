@@ -58,6 +58,7 @@ class Editor extends Component {
       <AceEditor
         ref="ace"
         width="100%"
+        height="655"
         value={this.props.editor.value}
         mode="javascript"
         theme="monokai"
