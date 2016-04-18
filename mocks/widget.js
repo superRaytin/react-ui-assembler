@@ -130,9 +130,10 @@ module.exports = {
     res.json(createSuccessData(
       {
         name: 'hello world',
-        description: 'just a test prototypo',
+        description: 'just a test widget',
         private: false,
-        group: 'Ant Design',
+        groupId: '12',
+        groupName: 'AntD 默认组件',
         //collaborators: 'a, b',
         //tags: 'x, y',
         //ownerId: '76483',
