@@ -67,7 +67,7 @@ class WidgetGroups extends Component {
 
     return (
       <div>
-        <div className="silo-search">
+        <div className="widget-group-search">
           <SearchInput {...this.props} placeholder="输入关键字" style={{ width: 178 }} />
         </div>
         {groups}
