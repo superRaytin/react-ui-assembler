@@ -52,8 +52,9 @@ class WidgetEditModal extends Component {
             <FormItem
               id="control-input-name"
               label="名称："
-              labelCol={{ span: 4 }}
-              wrapperCol={{ span: 18 }}>
+              labelCol={{ span: 6 }}
+              wrapperCol={{ span: 16 }}
+              required>
               <Input id="control-input-name"
                 {...getFieldProps('name', {
                   rules: [
@@ -69,8 +70,9 @@ class WidgetEditModal extends Component {
             <FormItem
               id="control-textarea-description"
               label="描述："
-              labelCol={{ span: 4 }}
-              wrapperCol={{ span: 18 }}>
+              labelCol={{ span: 6 }}
+              wrapperCol={{ span: 16 }}
+              required>
               <Input type="textarea" id="control-textarea-description" rows="2"
                 {...getFieldProps('description', {
                   rules: [
@@ -84,10 +86,31 @@ class WidgetEditModal extends Component {
             </FormItem>
 
             <FormItem
+              id="control-select-group"
+              label="所属群组："
+              labelCol={{ span: 6 }}
+              wrapperCol={{ span: 16 }}
+              required>
+              <Select id="control-select-group" style={{ width: 200 }}
+                {...getFieldProps('groupId', {
+                  rules: [
+                    {
+                      required: true,
+                      message: '请选择群组'
+                    }
+                  ],
+                  initialValue: widgetData.groupId
+                })}>
+                <Option value="45">jack</Option>
+                <Option value="12">AntD 默认组件</Option>
+              </Select>
+            </FormItem>
+
+            <FormItem
               id="control-checkbox-if-public"
               label="是否公开："
-              labelCol={{ span: 4 }}
-              wrapperCol={{ span: 18 }} >
+              labelCol={{ span: 6 }}
+              wrapperCol={{ span: 16 }} >
               <label className="ant-checkbox-inline">
                 <Checkbox id="control-checkbox-if-public"
                   {...getFieldProps('private', { initialValue: widgetData.private })} />

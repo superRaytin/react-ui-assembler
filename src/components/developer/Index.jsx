@@ -2,20 +2,15 @@ import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
-  Breadcrumb,
-  Icon
+  Breadcrumb
 } from 'antd';
 
 import * as _actions from '../../actions/index';
 import * as selectors from '../../selectors/index';
 
-import Header from '../Header';
-import Footer from '../Footer';
+import DefaultLayout from '../../layouts/default';
 import Toolbar from './Toolbar';
 import WidgetList from './WidgetList';
-import SearchInput from '../workspace/SearchInput';
-
-import '../workspace/Index.less';
 
 class Developer extends Component {
   constructor(props, context) {
@@ -24,39 +19,34 @@ class Developer extends Component {
 
   render() {
     return (
-      <div id="wrapper" className="silo">
-        <Header {...this.props} />
-        <section className="silo-container">
-          <div className="silo-board">
-            <section className="silo-toolbar m20">
-              <Toolbar {...this.props} router={this.context.router} />
-            </section>
-            <div className="silo-content">
-              <div className="breadcrumb">
-                <Breadcrumb>
-                  <Breadcrumb.Item>
-                    Ant Pro
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item>
-                    我的组件
-                  </Breadcrumb.Item>
-                  <Breadcrumb.Item>
-                    列表
-                  </Breadcrumb.Item>
-                </Breadcrumb>
-              </div>
-              <WidgetList {...this.props} router={this.context.router} />
-            </div>
+      <DefaultLayout route={this.props.route}>
+        <div className="silo-toolbar m20">
+          <Toolbar {...this.props} router={this.context.router} />
+        </div>
+        <div className="silo-content">
+          <div className="breadcrumb">
+            <Breadcrumb>
+              <Breadcrumb.Item>
+                Ant Pro
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                我的组件
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>
+                列表
+              </Breadcrumb.Item>
+            </Breadcrumb>
           </div>
-          <Footer />
-        </section>
-      </div>
+          <WidgetList {...this.props} router={this.context.router} />
+        </div>
+      </DefaultLayout>
     );
   }
 }
 
 Developer.propTypes = {
   actions: PropTypes.object,
+  route: PropTypes.object,
   developer: PropTypes.object
 };
 

@@ -1,0 +1,124 @@
+
+@import "../styles/variables.less";
+@import "../styles/common.less";
+
+#wrapper, #react-content {
+  height: 100%;
+}
+
+.silo {
+  .mac-flexbox(row);
+  height: 100%;
+}
+
+/* Header */
+.@{prefixClass}-header {
+  .mac-flexbox(column);
+  background: #444;
+  color: #fff;
+  text-align: center;
+  &-logo {
+    padding: 21px 16px;
+    background: #01BAD2;
+    .anticon {
+      font-size: 26px;
+    }
+  }
+  &-nav {
+    .mac-flexbox(column);
+    .mac-flexbox-item(1);
+    li {
+      font-size: 16px;
+      cursor: pointer;
+      a {
+        display: block;
+        padding: 8px 12px;
+        color: #fff;
+      }
+      span {
+        display: block;
+        padding: 3px 0;
+        font-size: 12px;
+      }
+      &:hover {
+        background: #333;
+      }
+      &.active {
+        background: #222;
+      }
+    }
+  }
+}
+
+/* Footer */
+.@{prefixClass}-footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Container */
+.@{prefixClass}-container {
+  .mac-flexbox-item(1);
+  .mac-flexbox(column);
+  .@{prefixClass}-board {
+    .mac-flexbox-item(1);
+    .mac-flexbox(column);
+  }
+}
+
+/* Toolbar */
+.@{prefixClass}-toolbar {
+  .mac-flexbox(row);
+  margin: 10px 10px 0 10px;
+  &.m20 {
+    margin: 20px 20px 0 20px;
+  }
+  &-wrapper {
+    .mac-flexbox(row);
+    .mac-flexbox-item(1);
+  }
+  &-group {
+    .mac-flexbox(row);
+    .mac-flexbox-item(1);
+  }
+  .toolbar-item {
+    .mac-flexbox-item(1);
+    max-width: 28px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 100%;
+    color: #aaa;
+    cursor: pointer;
+    &:hover {
+      color: #777;
+    }
+  }
+}
+
+/* Content */
+.@{prefixClass}-content {
+  .mac-flexbox-item(1);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 3px;
+  overflow: scroll;
+  background: #fff;
+  &.p0 {
+    padding: 0;
+  }
+}
+
+
+/* Board */
+.@{prefixClass}-board {
+  &-content {
+    .mac-flexbox(column);
+    .mac-flexbox-item(1);
+    margin: 10px;
+    background: #f1f1f1;
+    border-radius: 3px;
+    overflow: scroll;
+  }
+}

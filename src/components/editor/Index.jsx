@@ -8,13 +8,10 @@ import {
 import * as _actions from '../../actions/index';
 import * as selectors from '../../selectors/index';
 
-import Header from '../Header';
-import Footer from '../Footer';
+import DefaultLayout from '../../layouts/default';
 import Toolbar from './Toolbar';
 import WidgetEditModal from './WidgetEditModal';
 import AceEditor from './Editor';
-
-import '../workspace/Index.less';
 
 class Editor extends Component {
   constructor(props, context) {
@@ -35,30 +32,25 @@ class Editor extends Component {
 
   render() {
     return (
-      <div id="wrapper" className="silo">
-        <Header {...this.props} />
-        <section className="silo-container">
-          <div className="silo-board">
-            <section className="silo-toolbar m20">
-              <Toolbar {...this.props} router={this.context.router} />
-            </section>
-            <div className="silo-content p0">
-              <AceEditor {...this.props} />
-              {
-                this.props.uistate.showWidgetEditModal ?
-                  <WidgetEditModal {...this.props} handleOk={this.handleSave.bind(this)} /> : null
-              }
-            </div>
-          </div>
-          <Footer />
-        </section>
-      </div>
+      <DefaultLayout route={this.props.route}>
+        <div className="silo-toolbar m20">
+          <Toolbar {...this.props} router={this.context.router} />
+        </div>
+        <div className="silo-content p0">
+          <AceEditor {...this.props} />
+          {
+            this.props.uistate.showWidgetEditModal ?
+              <WidgetEditModal {...this.props} handleOk={this.handleSave.bind(this)} /> : null
+          }
+        </div>
+      </DefaultLayout>
     );
   }
 }
 
 Editor.propTypes = {
   actions: PropTypes.object,
+  route: PropTypes.object,
   location: PropTypes.object,
   editor: PropTypes.object,
   uistate: PropTypes.object,
